@@ -1,0 +1,62 @@
+$def with (posts)
+$var css: static/css/trevorcustom.css
+
+<br /><br />
+
+<div class = "container">
+    $if session["user"] == None:
+        <h1>Welcome CodeWizard</h1>
+    $else:
+        <div class = "row">
+            <ul class = "sidebar" >
+                <li class = "active"><a href = "#"><span class = "mdi mdi-home"> </span> Home Feed</a></li>
+
+                <li><a href = "#"><span class = "mdi mdi-account-circle"> </span> Profiles</a></li>
+
+                <li><a href = "#"><span class = "mdi mdi-email"> </span> Messages</a></li>
+
+                <li><a href = "#"><span class = "mdi mdi-google-circles-group"> </span> Friends</a></li>
+
+                <li><a href = "#"><span class = "mdi mdi-google-circles-communities"> </span> Communities</a></li>
+
+                <li><a href = "#"><span class = "mdi mdi-bell"> </span> Notifications</a></li>
+
+                <li><a href = "/settings"><span class = "mdi mdi-settings"> </span> Settings</a></li>
+
+                <li><a href = "#"><span class = "mdi help-circle"> </span> Help</a></li>
+
+            </ul>
+
+            <div class = "col-md-6">
+
+                <div class = "post-box">
+                    <form id = "post-activity">
+                        <textarea name = "content" class = "post-input" placeholder="What's new, $session['user']['username']?"></textarea>
+                        <button id = "post-button" class = "btn btn-info btn-raised waves-effect" type = "submit"><span class = "mdi mdi-send"></span> Post <div class = "ripple-container"></div></button>
+                    </form>
+                </div>
+
+                $for post in posts:
+                <div class = "post-box">
+                    <div class = "post-card">
+                        <div class = "header">
+                            <div class = "avatar"></div>
+                            <a href = "/profile"> $post['user']["username"]</a>
+                        </div>
+
+                        <div class = "content"> $post["posts"]</div>
+
+                        <div class = "footer">
+                            <button class = "btn btn-round waves-effect btn-default btn-raised btn-like"><span class = "mdi mdi-thumb-up-outline"></span> Like <div class = "ripple-container"></div></button>
+                            <button class = "btn btn-round waves-effect btn-default btn-raised btn-comment"><span class = "mdi mdi-comment-text-outline"></span> Comment <div class = "ripple-container"></div></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
